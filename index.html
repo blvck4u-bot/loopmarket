@@ -20,180 +20,115 @@
         .crypto-list::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-black text-white antialiased selection:bg-white selection:text-black min-h-screen flex flex-col overflow-hidden">
+<body class="bg-black text-white antialiased selection:bg-white selection:text-black min-h-screen flex flex-col">
 
-    <!-- Authentication Screen (Sign Up / Sign In) -->
-    <div id="authScreen" class="fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-500 p-6">
-        <div class="w-full max-w-sm border border-zinc-800 bg-zinc-950 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+    <!-- Navigation -->
+    <nav class="border-b border-zinc-800 p-4 md:p-6 flex justify-between items-center max-w-6xl mx-auto w-full sticky top-0 bg-black/80 backdrop-blur-md z-40">
+        <div class="text-lg md:text-xl font-bold tracking-tighter">LOOPMARKET</div>
+        <a href="https://t.me/fuckbroker" target="_blank" class="text-xs md:text-sm font-medium border border-white px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-colors duration-300">
+            Contact Support
+        </a>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="py-16 md:py-24 text-center max-w-4xl mx-auto px-4 md:px-6">
+        <div class="inline-block mb-4 px-3 py-1 border border-zinc-800 rounded-full text-[10px] md:text-xs text-zinc-400 font-mono">Accepting Crypto (BTC, ETH, SOL, LTC, TRX)</div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 md:mb-6 leading-tight">Premium Handles & Services.</h1>
+        <p class="text-zinc-400 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">Exclusive OG TikTok usernames, Username claims, verifications, and professional social media account management.</p>
+        <a href="#marketplace" class="bg-white text-black px-6 md:px-8 py-3 text-sm md:text-base font-semibold rounded-full hover:scale-105 transition-transform duration-300 inline-block">
+            View Inventory
+        </a>
+    </header>
+
+    <!-- Services Section -->
+    <section class="max-w-6xl mx-auto px-4 md:px-6 mb-16 md:mb-24 w-full">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 border-b border-zinc-800 pb-4">Services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Username Claim Service" data-price="$100.00">
+                <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Username Claims</h3>
+                <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Claim specific inactive handles and rare TikTok usernames.</p>
+                <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $100</div>
+            </div>
             
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold tracking-tighter mb-2">LOOPMARKET</h1>
-                <p id="authDescription" class="text-zinc-500 text-sm">Create an account to access the marketplace.</p>
+            <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="TikTok Verified Tick Service" data-price="$50.00">
+                <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Verified Tick</h3>
+                <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Official verified badge / blue tick service for TikTok accounts.</p>
+                <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
             </div>
 
-            <!-- Success Message (Hidden initially) -->
-            <div id="signupSuccessMsg" class="hidden mb-4 p-3 bg-zinc-900 border border-zinc-700 text-white text-sm text-center rounded-lg">
-                Account created successfully. Please sign in.
+            <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Ban/Unban Service" data-price="$50.00">
+                <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Bans & Unbans</h3>
+                <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Professional social media ban services and account recovery/unbans.</p>
+                <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
             </div>
-            
-            <!-- Sign Up Form -->
-            <form id="signUpForm" class="space-y-4 transition-all duration-300">
-                <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1 uppercase tracking-wider">Email</label>
-                    <input type="email" required class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="user@example.com">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1 uppercase tracking-wider">Password</label>
-                    <input type="password" required class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="••••••••">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1 uppercase tracking-wider">Confirm Password</label>
-                    <input type="password" required class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="••••••••">
-                </div>
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 mt-4 rounded-lg hover:bg-zinc-200 transition-colors">
-                    Create Account
-                </button>
-                <div class="text-center mt-4">
-                    <button type="button" id="showSignIn" class="text-xs text-zinc-400 hover:text-white transition-colors">
-                        Already have an account? Sign in
-                    </button>
-                </div>
-            </form>
 
-            <!-- Sign In Form (Hidden initially) -->
-            <form id="signInForm" class="hidden space-y-4 transition-all duration-300">
-                <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1 uppercase tracking-wider">Email</label>
-                    <input type="email" required class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="user@example.com">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-zinc-400 mb-1 uppercase tracking-wider">Password</label>
-                    <input type="password" required class="w-full bg-black border border-zinc-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white transition-colors" placeholder="••••••••">
-                </div>
-                <button type="submit" class="w-full bg-white text-black font-bold py-3 mt-4 rounded-lg hover:bg-zinc-200 transition-colors">
-                    Sign In
-                </button>
-                <div class="text-center mt-4">
-                    <button type="button" id="showSignUp" class="text-xs text-zinc-400 hover:text-white transition-colors">
-                        Don't have an account? Sign up
-                    </button>
-                </div>
-            </form>
-
+            <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Account Lookup Service" data-price="$50.00">
+                <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Account Lookups</h3>
+                <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Deep account lookups to gather information and availability status.</p>
+                <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Main Content (Hidden Initially) -->
-    <div id="mainContent" class="hidden flex-col min-h-screen opacity-0 transition-opacity duration-500">
+    <!-- Marketplace Section -->
+    <section id="marketplace" class="max-w-6xl mx-auto px-4 md:px-6 mb-16 md:mb-24 w-full flex-grow">
+        <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 border-b border-zinc-800 pb-4">TikTok Username Marketplace</h2>
         
-        <!-- Navigation -->
-        <nav class="border-b border-zinc-800 p-4 md:p-6 flex justify-between items-center max-w-6xl mx-auto w-full sticky top-0 bg-black/80 backdrop-blur-md z-40">
-            <div class="text-lg md:text-xl font-bold tracking-tighter">LOOPMARKET</div>
-            <a href="https://t.me/fuckbroker" target="_blank" class="text-xs md:text-sm font-medium border border-white px-3 py-1.5 md:px-4 md:py-2 hover:bg-white hover:text-black transition-colors duration-300">
-                Contact Support
-            </a>
-        </nav>
-
-        <!-- Header Section -->
-        <header class="py-16 md:py-24 text-center max-w-4xl mx-auto px-4 md:px-6">
-            <div class="inline-block mb-4 px-3 py-1 border border-zinc-800 rounded-full text-[10px] md:text-xs text-zinc-400 font-mono">Accepting Crypto (BTC, ETH, SOL, LTC, TRX)</div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 md:mb-6 leading-tight">Premium Handles & Services.</h1>
-            <p class="text-zinc-400 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">Exclusive OG TikTok usernames, Username claims, verifications, and professional social media account management.</p>
-            <a href="#marketplace" class="bg-white text-black px-6 md:px-8 py-3 text-sm md:text-base font-semibold rounded-full hover:scale-105 transition-transform duration-300 inline-block">
-                View Inventory
-            </a>
-        </header>
-
-        <!-- Services Section -->
-        <section class="max-w-6xl mx-auto px-4 md:px-6 mb-16 md:mb-24 w-full">
-            <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 border-b border-zinc-800 pb-4">Services</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Username Claim Service" data-price="$100.00">
-                    <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Username Claims</h3>
-                    <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Claim specific inactive handles and rare TikTok usernames.</p>
-                    <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $100</div>
-                </div>
-                
-                <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="TikTok Verified Tick Service" data-price="$50.00">
-                    <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Verified Tick</h3>
-                    <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Official verified badge / blue tick service for TikTok accounts.</p>
-                    <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
-                </div>
-
-                <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Ban/Unban Service" data-price="$50.00">
-                    <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Bans & Unbans</h3>
-                    <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Professional social media ban services and account recovery/unbans.</p>
-                    <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
-                </div>
-
-                <div class="purchase-item group border border-zinc-800 bg-zinc-950 p-5 md:p-6 cursor-pointer hover:border-white hover:-translate-y-1 transition-all duration-300 flex flex-col" data-name="Account Lookup Service" data-price="$50.00">
-                    <h3 class="text-base md:text-lg font-bold mb-2 group-hover:text-white text-zinc-200">Account Lookups</h3>
-                    <p class="text-xs md:text-sm text-zinc-400 mb-4 md:mb-6 flex-grow">Deep account lookups to gather information and availability status.</p>
-                    <div class="text-xs md:text-sm font-mono text-zinc-300 mt-auto">Starts at $50</div>
-                </div>
+        <!-- Premium Tier ($300) -->
+        <div class="mb-10 md:mb-12">
+            <h3 class="text-lg md:text-xl font-medium text-white mb-4 flex items-center gap-3">
+                Premium Tier <span class="bg-zinc-800 text-[10px] md:text-xs px-2 py-1 rounded font-mono text-zinc-300">$300</span>
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
+                <script>
+                    const premiums = [
+                        {n: 'mona', p: '300'}, {n: 'pyotr', p: '300'}, {n: 'stella', p: '300', co: '300'}, {n: 'cezanne', p: '300'},
+                        {n: 'the', p: '300'}, {n: 'why', p: '300', co: '650'}, {n: 'null', p: '300', co: '500'}, {n: 'hill', p: '300'},
+                        {n: 'once', p: '300'}, {n: 'scar', p: '300', co: '850'}, {n: 'ramp', p: '300'}, {n: 'tees', p: '300'},
+                        {n: 'dodgy', p: '300'}, {n: 'label', p: '300', co: '440'}
+                    ];
+                    premiums.forEach(item => {
+                        document.write(`
+                            <div class="purchase-item border border-zinc-800 bg-zinc-950 p-3 md:p-4 cursor-pointer hover:border-white hover:bg-zinc-900 transition-all duration-300 flex flex-col justify-center relative overflow-hidden group" data-name="@${item.n}" data-price="$${item.p}">
+                                <span class="font-semibold text-sm md:text-lg group-hover:text-white text-zinc-200">@${item.n}</span>
+                                ${item.co ? `<span class="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono">c/o: $${item.co}</span>` : ''}
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
-        </section>
+        </div>
 
-        <!-- Marketplace Section -->
-        <section id="marketplace" class="max-w-6xl mx-auto px-4 md:px-6 mb-16 md:mb-24 w-full flex-grow">
-            <h2 class="text-xl md:text-2xl font-semibold mb-4 md:mb-6 border-b border-zinc-800 pb-4">TikTok Username Marketplace</h2>
-            
-            <!-- Premium Tier ($300) -->
-            <div class="mb-10 md:mb-12">
-                <h3 class="text-lg md:text-xl font-medium text-white mb-4 flex items-center gap-3">
-                    Premium Tier <span class="bg-zinc-800 text-[10px] md:text-xs px-2 py-1 rounded font-mono text-zinc-300">$300</span>
-                </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3">
-                    <script>
-                        const premiums = [
-                            {n: 'mona', p: '300'}, {n: 'pyotr', p: '300'}, {n: 'stella', p: '300', co: '300'}, {n: 'cezanne', p: '300'},
-                            {n: 'the', p: '300'}, {n: 'why', p: '300', co: '650'}, {n: 'null', p: '300', co: '500'}, {n: 'hill', p: '300'},
-                            {n: 'once', p: '300'}, {n: 'scar', p: '300', co: '850'}, {n: 'ramp', p: '300'}, {n: 'tees', p: '300'},
-                            {n: 'dodgy', p: '300'}, {n: 'label', p: '300', co: '440'}
-                        ];
-                        premiums.forEach(item => {
-                            document.write(`
-                                <div class="purchase-item border border-zinc-800 bg-zinc-950 p-3 md:p-4 cursor-pointer hover:border-white hover:bg-zinc-900 transition-all duration-300 flex flex-col justify-center relative overflow-hidden group" data-name="@${item.n}" data-price="$${item.p}">
-                                    <span class="font-semibold text-sm md:text-lg group-hover:text-white text-zinc-200">@${item.n}</span>
-                                    ${item.co ? `<span class="text-[10px] md:text-xs text-zinc-500 mt-1 font-mono">c/o: $${item.co}</span>` : ''}
-                                </div>
-                            `);
-                        });
-                    </script>
-                </div>
+        <!-- Standard Tier ($150) -->
+        <div>
+            <h3 class="text-lg md:text-xl font-medium text-white mb-4 flex items-center gap-3">
+                Standard Tier <span class="bg-zinc-800 text-[10px] md:text-xs px-2 py-1 rounded font-mono text-zinc-300">$150</span>
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3 text-xs md:text-sm text-zinc-300">
+                <script>
+                    const standards = [
+                        'laptop', 'python', 'visual', 'hickey', 'karate', 'warble', 'lychee', 'menage', 'vision', 'centric', 'obelisk', 'useless', 'crafted', 'picture', 'nowhere', 'looting', 'whacked', 'correct', 'mission', 'outdated', 'devoured', 'taunting', 'customer', 'mightier', 'bruising', 'airports', 'clutching', 'ingenious', 'telegraph', 'watchlist', 'unpacking', 'dermatology', 'aftermarket', 'applications', 'uncomfortable'
+                    ];
+                    standards.forEach(item => {
+                        document.write(`
+                            <div class="purchase-item bg-zinc-900 border border-transparent p-3 md:p-4 cursor-pointer hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-300 text-center font-medium group" data-name="@${item}" data-price="$150">
+                                <span class="group-hover:text-white">@${item}</span>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
+        </div>
+    </section>
 
-            <!-- Standard Tier ($150) -->
-            <div>
-                <h3 class="text-lg md:text-xl font-medium text-white mb-4 flex items-center gap-3">
-                    Standard Tier <span class="bg-zinc-800 text-[10px] md:text-xs px-2 py-1 rounded font-mono text-zinc-300">$150</span>
-                </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-3 text-xs md:text-sm text-zinc-300">
-                    <script>
-                        const standards = [
-                            'laptop', 'python', 'visual', 'hickey', 'karate', 'warble', 'lychee', 'menage', 'vision', 'centric', 'obelisk', 'useless', 'crafted', 'picture', 'nowhere', 'looting', 'whacked', 'correct', 'mission', 'outdated', 'devoured', 'taunting', 'customer', 'mightier', 'bruising', 'airports', 'clutching', 'ingenious', 'telegraph', 'watchlist', 'unpacking', 'dermatology', 'aftermarket', 'applications', 'uncomfortable'
-                        ];
-                        standards.forEach(item => {
-                            document.write(`
-                                <div class="purchase-item bg-zinc-900 border border-transparent p-3 md:p-4 cursor-pointer hover:border-zinc-500 hover:bg-zinc-800 transition-all duration-300 text-center font-medium group" data-name="@${item}" data-price="$150">
-                                    <span class="group-hover:text-white">@${item}</span>
-                                </div>
-                            `);
-                        });
-                    </script>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="border-t border-zinc-800 py-10 md:py-12 text-center mt-auto px-4">
-            <p class="text-sm md:text-base text-zinc-500 mb-6">Need a custom request or middleman?</p>
-            <a href="https://t.me/fuckbroker" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-zinc-200 transition-colors text-sm md:text-base">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.432.895-.65 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                Message @fuckbroker
-            </a>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800 py-10 md:py-12 text-center mt-auto px-4">
+        <p class="text-sm md:text-base text-zinc-500 mb-6">Need a custom request or middleman?</p>
+        <a href="https://t.me/fuckbroker" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-zinc-200 transition-colors text-sm md:text-base">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.432.895-.65 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Message @fuckbroker
+        </a>
+    </footer>
 
     <!-- Payment Modal Overlay -->
     <div id="paymentModal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-black/90 backdrop-blur-sm opacity-0 transition-opacity duration-300 p-4">
@@ -291,64 +226,6 @@
 
     <!-- Logic Script -->
     <script>
-        // Authentication UI Logic
-        const authScreen = document.getElementById('authScreen');
-        const signUpForm = document.getElementById('signUpForm');
-        const signInForm = document.getElementById('signInForm');
-        const showSignInBtn = document.getElementById('showSignIn');
-        const showSignUpBtn = document.getElementById('showSignUp');
-        const signupSuccessMsg = document.getElementById('signupSuccessMsg');
-        const authDescription = document.getElementById('authDescription');
-        const mainContent = document.getElementById('mainContent');
-
-        // Toggle to Sign In View
-        const switchToSignIn = () => {
-            signUpForm.classList.add('hidden');
-            signInForm.classList.remove('hidden');
-            authDescription.innerText = "Enter your credentials to access the marketplace.";
-        };
-
-        // Toggle to Sign Up View
-        const switchToSignUp = () => {
-            signInForm.classList.add('hidden');
-            signUpForm.classList.remove('hidden');
-            signupSuccessMsg.classList.add('hidden'); // hide success message if going back to sign up
-            authDescription.innerText = "Create an account to access the marketplace.";
-        };
-
-        showSignInBtn.addEventListener('click', switchToSignIn);
-        showSignUpBtn.addEventListener('click', switchToSignUp);
-
-        // Handle Sign Up Submission
-        signUpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Simulate account creation
-            switchToSignIn();
-            signupSuccessMsg.classList.remove('hidden');
-            // reset form inputs
-            signUpForm.reset();
-        });
-
-        // Handle Sign In Submission
-        signInForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Fade out auth screen
-            authScreen.classList.add('opacity-0');
-            setTimeout(() => {
-                authScreen.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden'); // Restore body scrolling
-                
-                // Show main content
-                mainContent.classList.remove('hidden');
-                mainContent.classList.add('flex');
-                
-                // trigger fade in
-                setTimeout(() => {
-                    mainContent.classList.remove('opacity-0');
-                }, 50);
-            }, 500);
-        });
-
         // Modal Logic
         const modal = document.getElementById('paymentModal');
         const modalContent = document.getElementById('modalContent');
